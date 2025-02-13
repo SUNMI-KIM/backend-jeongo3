@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @Operation(summary = "로그인", description = "유저 서비스 로그인 기능")
+    /*@Operation(summary = "로그인", description = "유저 서비스 로그인 기능")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "성공", useReturnTypeSchema = true),
             @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없음", content = @Content(
@@ -67,7 +67,7 @@ public class UserController {
         TokenDto tokenDto = userService.loginUser(loginId, password);
         Response response = Response.builder().message("로그인 성공").data(tokenDto).build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
+    }*/
 
 
     @Operation(summary = "마이페이지", description = "유저 마이페이지 기능")

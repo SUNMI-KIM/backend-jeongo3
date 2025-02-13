@@ -3,11 +3,13 @@ package kr.kookmin.jeongo3.User;
 import kr.kookmin.jeongo3.Exception.ErrorCode;
 import kr.kookmin.jeongo3.Exception.MyException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -16,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findById(username).orElseThrow(() -> new MyException(ErrorCode.USER_NOT_FOUND));
+        User user = userRepository.findByLoginId(username).orElseThrow(() -> new MyException(ErrorCode.USER_NOT_FOUND));
         return new CustomUserDetails(user);
     }
 }

@@ -9,6 +9,7 @@ import java.util.Optional;
 @Repository
 public interface JwtRepository extends JpaRepository<Jwt, String> {
     public Optional<Jwt> findTopByUser(User user);
+    public void deleteByUser(User user);
     public boolean existsByUser(User user);
 
 }
