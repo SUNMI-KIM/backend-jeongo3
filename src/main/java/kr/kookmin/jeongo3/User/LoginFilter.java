@@ -78,6 +78,5 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         response.getWriter().write(jsonResponse);
         response.getWriter().flush();
         response.getWriter().close();
-
     }
 }

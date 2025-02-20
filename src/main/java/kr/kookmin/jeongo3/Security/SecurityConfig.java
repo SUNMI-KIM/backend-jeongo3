@@ -65,7 +65,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/user").permitAll()
-                .requestMatchers("/login", "/user/validation", "/refresh", "/users", "/register").permitAll()
+                .requestMatchers("/login", "/user/validation", "/refresh", "/users").permitAll()
                 .requestMatchers("comment", "/user", "/user/report", "/post-like", "/DISC", "/DISC-headcount", "/post", "/posts", "/hot-post").hasAnyRole("UNIV", "HIGH", "ADMIN")
                 .anyRequest().denyAll()
 
