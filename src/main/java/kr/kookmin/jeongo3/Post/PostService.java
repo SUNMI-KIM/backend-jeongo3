@@ -6,6 +6,7 @@ import kr.kookmin.jeongo3.Exception.ErrorCode;
 import kr.kookmin.jeongo3.Exception.MyException;
 import kr.kookmin.jeongo3.Post.Dto.*;
 import kr.kookmin.jeongo3.PostLike.PostLikeRepository;
+import kr.kookmin.jeongo3.PostLike.PostLikeService;
 import kr.kookmin.jeongo3.User.User;
 import kr.kookmin.jeongo3.User.UserRepository;
 import kr.kookmin.jeongo3.User.UserRole;
@@ -28,6 +29,7 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final PostLikeRepository postLikeRepository;
+    private final PostLikeService postLikeService;
     private final S3Service s3Service;
 
     public String savePost(RequestPostDto requestPostDto, User user) {
@@ -89,7 +91,7 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new MyException(POST_NOT_FOUND));
         ResponsePostDto responsePostDto = new ResponsePostDto(post);
         responsePostDto.setLike(postLikeRepository.existsByUserAndPost(user, post));
-        responsePostDto.setLikeNumber(postLikeRepository.countByPost_Id(post.getId()));
+        responsePostDto.setLikeNumber(postLikeService.getLikeCount(postId));
 
         if (post.getImage() != null) {
             responsePostDto.setImage(s3Service.getPresignedURL(post.getImage()));
