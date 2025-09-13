@@ -35,6 +35,9 @@ dependencies {
 	// aws 관련
 	implementation "com.amazonaws:aws-java-sdk-s3:1.12.281"
 
+	// aws health check 관련
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+
 	// 날짜 데이터를 json으로 내보내기 위한
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
