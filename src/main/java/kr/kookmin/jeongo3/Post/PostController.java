@@ -107,4 +107,11 @@ public class PostController {
         Response response = Response.builder().message("핫 게시글").data(post).build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<Response<List<PostMapping>>> searchPost(@RequestParam String keyword) {
+        List<PostMapping> postList = postService.searchPost(keyword);
+        Response response = Response.builder().message("검색된 게시물").data(postList).build();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }

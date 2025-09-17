@@ -104,4 +104,8 @@ public class PostService {
         post.setLikeNumber(postLikeRepository.countByPost_Id(post.getPostId()));
         return post;
     }
+
+    public List<PostMapping> searchPost(String keyword) {
+        return postRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+    }
 }
